@@ -6,10 +6,36 @@ pub unsafe fn is_valid_just_shield_reflector(_module_accessor: &mut smash::app::
     return true;
 }
 
-/*SHIELD STATUSES*/
-//Sub Guard Cont Pre
+/* SHIELD STATUSES */
+// Sub Guard Cont Pre
 #[skyline::hook(replace = smash::lua2cpp::L2CFighterCommon_sub_guard_cont_pre)]
 pub unsafe fn status_sub_guard_cont_pre(fighter: &mut L2CFighterCommon) {
+    let status = fighter.global_table[STATUS_KIND].get_i32();
+
+    //*Shield Stop: Cancel Movement from Any Action
+    if status == *FIGHTER_STATUS_KIND_WALK 
+    || status == *FIGHTER_STATUS_KIND_DASH
+    || status == *FIGHTER_STATUS_KIND_RUN
+    || status == *FIGHTER_STATUS_KIND_TURN_RUN
+    || status == *FIGHTER_STATUS_KIND_TURN_DASH {
+        fighter.change_status(FIGHTER_STATUS_KIND_GUARD_ON.into(), false.into());
+
+        // **Cancel All Motion Speed**
+        KineticModule::clear_speed_energy_id(fighter.module_accessor, *FIGHTER_KINETIC_ENERGY_ID_MOTION);
+
+
+        return; // Stop further status processing
+    }
+
+    // Shield Drop Mechanic
+    if ControlModule::check_button_on(fighter.module_accessor, *CONTROL_PAD_BUTTON_GUARD)
+    && ControlModule::get_stick_y(fighter.module_accessor) < -0.66
+    && GroundModule::is_passable_ground(fighter.module_accessor) {
+        fighter.change_status(FIGHTER_STATUS_KIND_PASS.into(), false.into());
+        return;
+    }
+
+    // Preserve Catch Turn & Dash During Shield On
     if fighter.global_table[STATUS_KIND_INTERRUPT].get_i32() == *FIGHTER_STATUS_KIND_GUARD_ON
     && fighter.global_table[PREV_STATUS_KIND].get_i32() == *FIGHTER_STATUS_KIND_RUN {
         WorkModule::enable_transition_term(fighter.module_accessor, *FIGHTER_STATUS_TRANSITION_TERM_ID_CONT_CATCH_TURN);
@@ -17,6 +43,8 @@ pub unsafe fn status_sub_guard_cont_pre(fighter: &mut L2CFighterCommon) {
         let catch_dash_frame = WorkModule::get_param_int(fighter.module_accessor, hash40("common"), hash40("catch_dash_frame"));
         WorkModule::set_int(fighter.module_accessor, catch_dash_frame, *FIGHTER_STATUS_GUARD_ON_WORK_INT_CATCH_FRAME);
     }
+
+    // Enable Shield-Related Transitions
     let transition_terms = [
         *FIGHTER_STATUS_TRANSITION_TERM_ID_CONT_ITEM_THROW_GUARD,
         *FIGHTER_STATUS_TRANSITION_TERM_ID_CONT_CATCH,
@@ -111,15 +139,7 @@ pub unsafe fn status_sub_guard_cont(fighter: &mut L2CFighterCommon) -> L2CValue 
             fighter.change_status(FIGHTER_STATUS_KIND_ESCAPE_B.into(), true.into());
             return true.into();
         }
-        /* START OF NEW ADDITION */
-        //Allows platform drops out of shield
-        if GroundModule::is_passable_ground(fighter.module_accessor)
-        && WorkModule::is_enable_transition_term(fighter.module_accessor, *FIGHTER_STATUS_TRANSITION_TERM_ID_CONT_PASS)
-        && (fighter.global_table[CMD_CAT2].get_i32() & (*FIGHTER_PAD_CMD_CAT2_FLAG_GUARD_TO_PASS | *FIGHTER_PAD_CMD_CAT2_FLAG_APPEAL_HI | *FIGHTER_PAD_CMD_CAT2_FLAG_APPEAL_S_L | *FIGHTER_PAD_CMD_CAT2_FLAG_APPEAL_S_R | *FIGHTER_PAD_CMD_CAT2_FLAG_APPEAL_LW) != 0)
-        && fighter.global_table[SITUATION_KIND].get_i32() == *SITUATION_KIND_GROUND {
-            fighter.change_status(FIGHTER_STATUS_KIND_PASS.into(), true.into());
-            return true.into();
-        }
+        
         /* END OF NEW ADDITION */
     }
     if is_shield_stop {

@@ -53,7 +53,7 @@ pub fn can_use_glide(kind: i32) -> bool {
 fn nro_hook(info: &skyline::nro::NroInfo) {
     if info.name == "common" {
         skyline::install_hooks!(
-            status_landing_main_sub
+            status_landing_main_sub,
         );
     }
 }

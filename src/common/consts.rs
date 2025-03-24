@@ -73,6 +73,40 @@ pub const FIGHTER_STATUS_KIND_SPECIAL_GUARD: LuaConst = LuaConst::new(0x643);
 pub const FIGHTER_STATUS_KIND_FLOAT: LuaConst = LuaConst::new(0x644);
 pub const COLLISION_KIND_MASK_PARRY: LuaConst = LuaConst::new(0x80);
 
+
+
+
+//Custom Universal Consts
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_ATTACK_DASH_ENABLE_AIR_CONTINUE: smash::lib::LuaConst = smash::lib::LuaConst::new(0x20000119);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_ATTACK_DASH_ENABLE_AIR_FALL: smash::lib::LuaConst = smash::lib::LuaConst::new(0x2000011A);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_ATTACK_DASH_ENABLE_AIR_LANDING: smash::lib::LuaConst = smash::lib::LuaConst::new(0x2000011B);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_ATTACK_DASH_ENABLE_GRAVITY: smash::lib::LuaConst = smash::lib::LuaConst::new(0x2000011C);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_ATTACK_DASH_GRAVITY_ENABLED: smash::lib::LuaConst = smash::lib::LuaConst::new(0x2000011D);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_BOUNCE: smash::lib::LuaConst = smash::lib::LuaConst::new(0x2000011E);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_CAN_AIR_FLIP: smash::lib::LuaConst = smash::lib::LuaConst::new(0x20000120);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_CAN_GATLING: smash::lib::LuaConst = smash::lib::LuaConst::new(0x20000121);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_FINAL_ZOOM_LAST_STOCK: smash::lib::LuaConst = smash::lib::LuaConst::new(0x20000125);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_FIRST_BOUNCE: smash::lib::LuaConst = smash::lib::LuaConst::new(0x20000126); //Allows the throwing player to bounce the ball on their own side once
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_HAS_CATCH: smash::lib::LuaConst = smash::lib::LuaConst::new(0x20000128);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_HIT_MOVE: smash::lib::LuaConst = smash::lib::LuaConst::new(0x20000129);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_IS_CC: smash::lib::LuaConst = smash::lib::LuaConst::new(0x2000012A);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_PERFECT_WAVEDASH: smash::lib::LuaConst = smash::lib::LuaConst::new(0x2000012B);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_SPECIAL_HI_DISABLE: smash::lib::LuaConst = smash::lib::LuaConst::new(0x2000012D);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_SPECIAL_LW_DISABLE: smash::lib::LuaConst = smash::lib::LuaConst::new(0x2000012E);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_SPECIAL_N_DISABLE: smash::lib::LuaConst = smash::lib::LuaConst::new(0x2000012F);
+pub const FIGHTER_INSTANCE_WORK_ID_FLAG_SPECIAL_S_DISABLE: smash::lib::LuaConst = smash::lib::LuaConst::new(0x20000130);
+pub const FIGHTER_INSTANCE_WORK_ID_FLOAT_ATTACK_DASH_FALL_SPEED_Y_MUL: smash::lib::LuaConst = smash::lib::LuaConst::new(0x641);
+pub const FIGHTER_INSTANCE_WORK_ID_FLOAT_DASH_GRAB_SPEED: smash::lib::LuaConst = smash::lib::LuaConst::new(0x642);
+pub const FIGHTER_INSTANCE_WORK_ID_FLOAT_JUMP_SPEED_RATIO: smash::lib::LuaConst = smash::lib::LuaConst::new(0x643);
+pub const FIGHTER_INSTANCE_WORK_ID_INT_ATTACK_ANGLE: smash::lib::LuaConst = smash::lib::LuaConst::new(0x100000ED);
+pub const FIGHTER_INSTANCE_WORK_ID_INT_COMMAND_INPUT_TIMER: smash::lib::LuaConst = smash::lib::LuaConst::new(0x100000EE);
+pub const FIGHTER_INSTANCE_WORK_ID_INT_FINAL_ZOOM_COUNTER: smash::lib::LuaConst = smash::lib::LuaConst::new(0x100000EF);
+pub const FIGHTER_INSTANCE_WORK_ID_INT_FINAL_ZOOM_HANDLE: smash::lib::LuaConst = smash::lib::LuaConst::new(0x100000F0);
+pub const FIGHTER_INSTANCE_WORK_ID_INT_FULL_HOP_ENABLE_DELAY: smash::lib::LuaConst = smash::lib::LuaConst::new(0x100000F1);
+pub const FIGHTER_INSTANCE_WORK_ID_INT_SHIELD_DAMAGE: smash::lib::LuaConst = smash::lib::LuaConst::new(0x100000F7);
+pub const FIGHTER_INSTANCE_WORK_ID_INT_SHIELD_EFFECT_ID: smash::lib::LuaConst = smash::lib::LuaConst::new(0x100000F8);
+pub const FIGHTER_INSTANCE_WORK_ID_INT_SPECIAL_ZOOM_GFX: smash::lib::LuaConst = smash::lib::LuaConst::new(0x100000F9);
+
 //BANDANA
 pub const FIGHTER_BANDANA_INSTANCE_WORK_ID_INT_SPECIAL_S_CHARGE: LuaConst = LuaConst::new(0x100000D0);
 pub const FIGHTER_BANDANA_INSTANCE_WORK_ID_INT_FIRE_ID: LuaConst = LuaConst::new(0x100000D1);
