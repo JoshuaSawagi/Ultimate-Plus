@@ -12,7 +12,7 @@ mod EscapeAir;
 mod Rebirth;
 mod Damage;
 mod Ground;
-
+mod JumpSquat;
 pub fn install() {
 
     FighterStatusGuard::install();
@@ -29,4 +29,5 @@ pub fn install() {
     Rebirth::install();
     Damage::install();
     Ground::install();
+    JumpSquat::install();
 }
